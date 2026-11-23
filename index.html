@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="Flasher firmware ESP32 dan ESP8266 melalui Web Serial, langsung dari browser.">
+  <title>ESP Web Flasher</title>
+  <style>
+    :root{color-scheme:dark;--bg:#101820;--panel:#192630;--panel2:#202f3b;--line:#344754;--text:#eef5f8;--muted:#a8bbc5;--teal:#68e0c0;--blue:#7cb7ff;--red:#ff8e8e;--yellow:#f4d17d;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#203940 0,transparent 42%),var(--bg);color:var(--text);min-height:100vh}
+    main{width:min(760px,100% - 32px);margin:48px auto;padding-bottom:48px}.brand{color:var(--teal);font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.08;margin:10px 0}header p{color:var(--muted);max-width:620px;margin:14px 0 26px}.card{background:linear-gradient(145deg,rgba(32,47,59,.96),rgba(25,38,48,.96));border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0;box-shadow:0 14px 40px #0002}.card h2{font-size:1.13rem;margin:0 0 18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label{font-size:.9rem;font-weight:650}.hint{font-size:.8rem;color:var(--muted)}input,select{width:100%;min-height:46px;border:1px solid #49606e;border-radius:10px;background:#101a22;color:var(--text);padding:10px 12px;font:inherit}input[type=file]{padding:8px}input[type=checkbox]{width:18px;min-height:18px;accent-color:var(--teal)}.rowcheck{display:flex;align-items:flex-start;gap:10px;margin-top:15px;color:var(--muted);font-size:.87rem}.actions{display:flex;gap:12px;align-items:center;margin-top:22px;flex-wrap:wrap}button{border:0;border-radius:11px;padding:13px 20px;background:var(--teal);color:#0b211e;font:700 1rem system-ui;cursor:pointer;min-height:48px}button:hover{filter:brightness(1.06)}button:disabled{opacity:.48;cursor:not-allowed}.status{color:var(--muted);font-size:.9rem}.status[data-kind=ok]{color:var(--teal)}.status[data-kind=error]{color:var(--red)}.status[data-kind=warn]{color:var(--yellow)}.warning{border-left:3px solid var(--yellow);padding:11px 14px;background:#f4d17d12;color:#f5e7bd;border-radius:0 10px 10px 0;font-size:.88rem}.compat{padding:12px 14px;border-radius:10px;background:#101a22;color:var(--muted);font-size:.84rem;margin:0 0 18px}.progress-wrap{margin-top:18px;display:none}.progress-wrap.show{display:block}.progress-head{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;margin-bottom:8px}progress{width:100%;height:12px;accent-color:var(--teal)}.terminal{margin-top:18px}.terminal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--muted);font-size:.86rem}.terminal button{min-height:34px;padding:6px 10px;font-size:.8rem;background:var(--panel2);color:var(--text);border:1px solid var(--line)}pre{height:220px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;border:1px solid var(--line);border-radius:11px;background:#0b1116;color:#c1e9dc;padding:14px;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace}.foot{color:var(--muted);font-size:.82rem;text-align:center;margin-top:24px}.foot a{color:var(--blue)}
+    @media(max-width:560px){main{margin:28px auto}.card{padding:18px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.actions{align-items:stretch}.actions button{width:100%}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">ESP • Web Serial</div>
+    <h1>ESP Web Flasher</h1>
+    <p>Unggah berkas firmware lalu flash langsung ke board ESP32 atau ESP8266 melalui port serial browser. Firmware diproses di perangkat Anda; halaman ini tidak mengunggahnya ke server.</p>
+  </header>
+  <section class="card" aria-labelledby="flash-title">
+    <h2 id="flash-title">Firmware</h2>
+    <p class="compat" id="compat">Memeriksa dukungan Web Serial… Gunakan Chrome atau Edge terbaru melalui HTTPS, lalu sambungkan board dengan kabel USB data.</p>
+    <div class="grid">
+      <div class="field full">
+        <label for="firmware">Berkas firmware (.bin)</label>
+        <input id="firmware" type="file" accept=".bin,application/octet-stream">
+        <span class="hint" id="filehint">Pilih satu image .bin. Berkas tidak dikirim keluar dari browser.</span>
+      </div>
+      <div class="field">
+        <label for="address">Alamat flash (hex)</label>
+        <input id="address" type="text" value="0x10000" inputmode="text" autocomplete="off" spellcheck="false" aria-describedby="addresshint">
+        <span class="hint" id="addresshint">ESP32 app umumnya 0x10000; image gabungan/bootloader bisa berbeda.</span>
+      </div>
+      <div class="field">
+        <label for="baud">Baud rate</label>
+        <select id="baud"><option>115200</option><option>230400</option><option selected>460800</option><option>921600</option></select>
+        <span class="hint">Jika koneksi tidak stabil, gunakan 115200.</span>
+      </div>
+    </div>
+    <label class="rowcheck"><input id="erase" type="checkbox"><span>Hapus seluruh flash sebelum menulis. Ini menghapus semua data, termasuk konfigurasi dan filesystem.</span></label>
+    <div class="warning" style="margin-top:17px">Pastikan alamat dan firmware cocok dengan board. Salah alamat dapat merusak boot atau menghapus data yang dibutuhkan. Backup data penting terlebih dahulu.</div>
+    <div class="actions">
+      <button id="flashBtn" type="button">Pilih port &amp; flash</button>
+      <span class="status" id="status" role="status" aria-live="polite">Siap.</span>
+    </div>
+    <div class="progress-wrap" id="progressWrap"><div class="progress-head"><span id="progressText">Menyiapkan…</span><span id="progressPct">0%</span></div><progress id="progress" max="100" value="0">0%</progress></div>
+    <div class="terminal"><div class="terminal-head"><span>Log proses</span><button id="clearLog" type="button">Bersihkan log</button></div><pre id="log" aria-live="polite">Siap. Pilih firmware .bin untuk memulai.
+</pre></div>
+  </section>
+  <p class="foot">Membutuhkan browser dengan Web Serial API dan koneksi HTTPS. Library flasher: <a href="https://github.com/espressif/esptool-js" target="_blank" rel="noopener noreferrer">esptool-js oleh Espressif</a>.</p>
+</main>
+<script type="module">
+  const $ = (id) => document.getElementById(id);
+  const logBox = $('log'), button = $('flashBtn');
+  let transport = null, loader = null;
+  function log(message) {
+    const line = String(message ?? '').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '');
+    logBox.textContent += line.endsWith('\n') ? line : `${line}\n`;
+    logBox.scrollTop = logBox.scrollHeight;
+  }
+  function setStatus(message, kind='') { $('status').textContent = message; $('status').dataset.kind = kind; }
+  const supported = 'serial' in navigator && window.isSecureContext;
+  $('compat').textContent = supported
+    ? 'Web Serial tersedia. Hubungkan board memakai kabel USB data dan tutup aplikasi serial lain (misalnya Serial Monitor).'
+    : 'Web Serial tidak tersedia pada browser/konteks ini. Buka URL GitHub Pages di Chrome/Edge terbaru pada HTTPS. Android/iOS dapat membatasi akses serial; gunakan komputer bila pemilih port tidak muncul.';
+  if (!supported) button.disabled = true;
+  $('firmware').addEventListener('change', () => {
+    const f = $('firmware').files[0];
+    $('filehint').textContent = f ? `${f.name} • ${formatBytes(f.size)}` : 'Pilih satu image .bin. Berkas tidak dikirim keluar dari browser.';
+  });
+  $('clearLog').addEventListener('click', () => { logBox.textContent = ''; });
+  function formatBytes(bytes) { return bytes < 1048576 ? `${(bytes/1024).toFixed(1)} KB` : `${(bytes/1048576).toFixed(2)} MB`; }
+  function parseAddress(value) {
+    const s = value.trim();
+    if (!/^(0x[\da-f]+|\d+)$/i.test(s)) throw new Error('Alamat harus berupa angka desimal atau hex (contoh: 0x10000).');
+    const n = Number(s.toLowerCase().startsWith('0x') ? parseInt(s,16) : Number(s));
+    if (!Number.isSafeInteger(n) || n < 0 || n > 0x3fffffff || n % 0x1000 !== 0) throw new Error('Alamat harus valid dan sejajar sektor 0x1000.');
+    return n;
+  }
+  button.addEventListener('click', async () => {
+    const file = $('firmware').files[0];
+    if (!file) { setStatus('Pilih berkas firmware terlebih dahulu.', 'warn'); $('firmware').focus(); return; }
+    if (!file.name.toLowerCase().endsWith('.bin')) { setStatus('Pilih berkas .bin.', 'error'); return; }
+    let address;
+    try { address = parseAddress($('address').value); }
+    catch (e) { setStatus(e.message, 'error'); $('address').focus(); return; }
+    button.disabled = true;
+    $('progressWrap').classList.add('show'); $('progress').value = 0; $('progressPct').textContent = '0%';
+    try {
+      log(`Berkas: ${file.name} (${formatBytes(file.size)})`);
+      log(`Alamat: 0x${address.toString(16).toUpperCase()} | Baud: ${$('baud').value}`);
+      setStatus('Memuat library flasher…');
+      const { ESPLoader, Transport } = await import('https://esm.sh/esptool-js@0.7.1?bundle');
+      log('Meminta izin port serial…');
+      const port = await navigator.serial.requestPort();
+      transport = new Transport(port, true);
+      const terminal = { clean(){}, writeLine(data){ log(data); }, write(data){ log(data); } };
+      loader = new ESPLoader({ transport, baudrate: Number($('baud').value), terminal, debugLogging: false });
+      setStatus('Menghubungkan ke board…');
+      log('Menghubungkan; jika gagal, tahan tombol BOOT saat board reset.');
+      const chipName = await loader.main();
+      log(`Chip terdeteksi: ${chipName}`);
+      setStatus('Membaca berkas…');
+      const data = new Uint8Array(await file.arrayBuffer());
+      if (!data.length) throw new Error('Berkas firmware kosong.');
+      log(`Mulai menulis ${formatBytes(data.length)}…`);
+      setStatus('Sedang menulis firmware…');
+      await loader.writeFlash({
+        fileArray: [{ data, address }],
+        flashMode: 'dio', flashFreq: '40m', flashSize: 'keep',
+        eraseAll: $('erase').checked, compress: true,
+        reportProgress(_fileIndex, written, total) {
+          const pct = total ? Math.min(100, Math.round(written / total * 100)) : 0;
+          $('progress').value = pct; $('progressPct').textContent = `${pct}%`;
+          $('progressText').textContent = `Menulis ${formatBytes(written)} dari ${formatBytes(total)}`;
+        }
+      });
+      log('Flash berhasil. Melakukan reset…');
+      setStatus('Flash berhasil.', 'ok'); $('progress').value = 100; $('progressPct').textContent = '100%'; $('progressText').textContent = 'Selesai';
+      try { await loader.after('hard_reset'); log('Board telah di-reset.'); } catch (e) { log(`Reset otomatis tidak berhasil: ${e.message || e}`); }
+    } catch (error) {
+      const msg = error?.message || String(error);
+      log(`GAGAL: ${msg}`);
+      setStatus(msg.includes('cancel') || msg.includes('No port selected') ? 'Pemilihan port dibatalkan.' : `Gagal: ${msg}`, 'error');
+    } finally {
+      try { if (transport) await transport.disconnect(); } catch (e) { log(`Catatan saat menutup port: ${e.message || e}`); }
+      transport = null; loader = null; button.disabled = !supported;
+    }
+  });
+</script>
+</body>
+</html>
