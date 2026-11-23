@@ -1,12 +1,12 @@
 # ESP Web Flasher
 
-Aplikasi statis satu halaman untuk mengunggah satu berkas firmware `.bin` ke ESP32/ESP8266 melalui Web Serial dan `esptool-js`.
+Aplikasi statis satu halaman untuk mengunggah satu berkas firmware `.bin` ke ESP32/ESP8266 melalui Web Serial dan `esptool-js`, lalu membaca output konsol serial firmware secara real-time.
 
 ## Menjalankan
 
 Buka `index.html` melalui GitHub Pages (HTTPS) di browser Chromium yang mendukung Web Serial, seperti Chrome atau Edge desktop. Pilih firmware `.bin`, tentukan alamat flash sesuai instruksi firmware, pilih baud rate, lalu tekan **Pilih port & flash** dan pilih port board. Jika board tidak tersambung, coba baud 115200 dan tahan tombol BOOT saat proses reset/koneksi.
 
-Halaman ini tidak mengunggah firmware ke server. Peramban akan meminta akses serial melalui dialog izin. Jangan tutup tab atau cabut board selama proses penulisan.
+Halaman ini tidak mengunggah firmware ke server. Peramban akan meminta akses serial melalui dialog izin. Jangan tutup tab atau cabut board selama proses penulisan. Setelah flash berhasil, port dibuka kembali otomatis untuk membaca log konsol pada baud rate yang dipilih. Gunakan tombol **Berhenti** untuk menutup pembacaan serial; tombol **Mulai pantau serial** dapat digunakan kembali selama port board sudah dipilih.
 
 ## Penting
 

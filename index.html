@@ -9,7 +9,7 @@
   <style>
     :root{color-scheme:dark;--bg:#101820;--panel:#192630;--panel2:#202f3b;--line:#344754;--text:#eef5f8;--muted:#a8bbc5;--teal:#68e0c0;--blue:#7cb7ff;--red:#ff8e8e;--yellow:#f4d17d;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
     *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#203940 0,transparent 42%),var(--bg);color:var(--text);min-height:100vh}
-    main{width:min(760px,100% - 32px);margin:48px auto;padding-bottom:48px}.brand{color:var(--teal);font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.08;margin:10px 0}header p{color:var(--muted);max-width:620px;margin:14px 0 26px}.card{background:linear-gradient(145deg,rgba(32,47,59,.96),rgba(25,38,48,.96));border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0;box-shadow:0 14px 40px #0002}.card h2{font-size:1.13rem;margin:0 0 18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label{font-size:.9rem;font-weight:650}.hint{font-size:.8rem;color:var(--muted)}input,select{width:100%;min-height:46px;border:1px solid #49606e;border-radius:10px;background:#101a22;color:var(--text);padding:10px 12px;font:inherit}input[type=file]{padding:8px}input[type=checkbox]{width:18px;min-height:18px;accent-color:var(--teal)}.rowcheck{display:flex;align-items:flex-start;gap:10px;margin-top:15px;color:var(--muted);font-size:.87rem}.actions{display:flex;gap:12px;align-items:center;margin-top:22px;flex-wrap:wrap}button{border:0;border-radius:11px;padding:13px 20px;background:var(--teal);color:#0b211e;font:700 1rem system-ui;cursor:pointer;min-height:48px}button:hover{filter:brightness(1.06)}button:disabled{opacity:.48;cursor:not-allowed}.status{color:var(--muted);font-size:.9rem}.status[data-kind=ok]{color:var(--teal)}.status[data-kind=error]{color:var(--red)}.status[data-kind=warn]{color:var(--yellow)}.warning{border-left:3px solid var(--yellow);padding:11px 14px;background:#f4d17d12;color:#f5e7bd;border-radius:0 10px 10px 0;font-size:.88rem}.compat{padding:12px 14px;border-radius:10px;background:#101a22;color:var(--muted);font-size:.84rem;margin:0 0 18px}.progress-wrap{margin-top:18px;display:none}.progress-wrap.show{display:block}.progress-head{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;margin-bottom:8px}progress{width:100%;height:12px;accent-color:var(--teal)}.terminal{margin-top:18px}.terminal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--muted);font-size:.86rem}.terminal button{min-height:34px;padding:6px 10px;font-size:.8rem;background:var(--panel2);color:var(--text);border:1px solid var(--line)}pre{height:220px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;border:1px solid var(--line);border-radius:11px;background:#0b1116;color:#c1e9dc;padding:14px;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace}.foot{color:var(--muted);font-size:.82rem;text-align:center;margin-top:24px}.foot a{color:var(--blue)}
+    main{width:min(760px,100% - 32px);margin:48px auto;padding-bottom:48px}.brand{color:var(--teal);font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.08;margin:10px 0}header p{color:var(--muted);max-width:620px;margin:14px 0 26px}.card{background:linear-gradient(145deg,rgba(32,47,59,.96),rgba(25,38,48,.96));border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0;box-shadow:0 14px 40px #0002}.card h2{font-size:1.13rem;margin:0 0 18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label{font-size:.9rem;font-weight:650}.hint{font-size:.8rem;color:var(--muted)}input,select{width:100%;min-height:46px;border:1px solid #49606e;border-radius:10px;background:#101a22;color:var(--text);padding:10px 12px;font:inherit}input[type=file]{padding:8px}input[type=checkbox]{width:18px;min-height:18px;accent-color:var(--teal)}.rowcheck{display:flex;align-items:flex-start;gap:10px;margin-top:15px;color:var(--muted);font-size:.87rem}.actions{display:flex;gap:12px;align-items:center;margin-top:22px;flex-wrap:wrap}button{border:0;border-radius:11px;padding:13px 20px;background:var(--teal);color:#0b211e;font:700 1rem system-ui;cursor:pointer;min-height:48px}button:hover{filter:brightness(1.06)}button:disabled{opacity:.48;cursor:not-allowed}.status{color:var(--muted);font-size:.9rem}.status[data-kind=ok]{color:var(--teal)}.status[data-kind=error]{color:var(--red)}.status[data-kind=warn]{color:var(--yellow)}.warning{border-left:3px solid var(--yellow);padding:11px 14px;background:#f4d17d12;color:#f5e7bd;border-radius:0 10px 10px 0;font-size:.88rem}.compat{padding:12px 14px;border-radius:10px;background:#101a22;color:var(--muted);font-size:.84rem;margin:0 0 18px}.progress-wrap{margin-top:18px;display:none}.progress-wrap.show{display:block}.progress-head{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;margin-bottom:8px}progress{width:100%;height:12px;accent-color:var(--teal)}.terminal{margin-top:18px}.terminal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--muted);font-size:.86rem}.terminal button{min-height:34px;padding:6px 10px;font-size:.8rem;background:var(--panel2);color:var(--text);border:1px solid var(--line)}pre{height:220px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;border:1px solid var(--line);border-radius:11px;background:#0b1116;color:#c1e9dc;padding:14px;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace}.foot{color:var(--muted);font-size:.82rem;text-align:center;margin-top:24px}.foot a{color:var(--blue)}.console-card{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}.console-card h3{font-size:1rem;margin:0 0 6px}.console-card p{font-size:.83rem;color:var(--muted);margin:0 0 12px}.console-actions{display:flex;gap:10px;flex-wrap:wrap}.console-actions button{min-height:38px;padding:8px 13px;font-size:.85rem;background:var(--panel2);color:var(--text);border:1px solid var(--line)}.console-actions button:first-child{background:var(--teal);color:#0b211e;border:0}.console-status{font-size:.82rem;color:var(--muted);margin-left:2px;align-self:center}
     @media(max-width:560px){main{margin:28px auto}.card{padding:18px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.actions{align-items:stretch}.actions button{width:100%}}
   </style>
 </head>
@@ -49,19 +49,27 @@
     <div class="progress-wrap" id="progressWrap"><div class="progress-head"><span id="progressText">Menyiapkan…</span><span id="progressPct">0%</span></div><progress id="progress" max="100" value="0">0%</progress></div>
     <div class="terminal"><div class="terminal-head"><span>Log proses</span><button id="clearLog" type="button">Bersihkan log</button></div><pre id="log" aria-live="polite">Siap. Pilih firmware .bin untuk memulai.
 </pre></div>
+    <section class="console-card" aria-labelledby="console-title">
+      <h3 id="console-title">Konsol serial</h3>
+      <p id="consoleHint">Setelah flash berhasil, halaman akan mencoba membaca output serial dari firmware. Kecepatan konsol menggunakan baud rate yang dipilih di atas.</p>
+      <div class="console-actions"><button id="startConsole" type="button" disabled>Mulai pantau serial</button><button id="stopConsole" type="button" disabled>Berhenti</button><button id="clearConsole" type="button">Bersihkan konsol</button><span class="console-status" id="consoleStatus" role="status" aria-live="polite">Belum tersambung.</span></div>
+      <div class="terminal"><pre id="consoleLog" aria-live="polite">Output serial firmware akan muncul di sini.
+</pre></div>
+    </section>
   </section>
   <p class="foot">Membutuhkan browser dengan Web Serial API dan koneksi HTTPS. Library flasher: <a href="https://github.com/espressif/esptool-js" target="_blank" rel="noopener noreferrer">esptool-js oleh Espressif</a>.</p>
 </main>
 <script type="module">
   const $ = (id) => document.getElementById(id);
-  const logBox = $('log'), button = $('flashBtn');
-  let transport = null, loader = null;
+  const logBox = $('log'), button = $('flashBtn'), consoleBox = $('consoleLog');
+  let transport = null, loader = null, selectedPort = null, monitorReader = null, monitorTask = null, monitorStopRequested = false;
   function log(message) {
     const line = String(message ?? '').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '');
     logBox.textContent += line.endsWith('\n') ? line : `${line}\n`;
     logBox.scrollTop = logBox.scrollHeight;
   }
   function setStatus(message, kind='') { $('status').textContent = message; $('status').dataset.kind = kind; }
+  function setConsoleStatus(message) { $('consoleStatus').textContent = message; }
   const supported = 'serial' in navigator && window.isSecureContext;
   $('compat').textContent = supported
     ? 'Web Serial tersedia. Hubungkan board memakai kabel USB data dan tutup aplikasi serial lain (misalnya Serial Monitor).'
@@ -72,6 +80,12 @@
     $('filehint').textContent = f ? `${f.name} • ${formatBytes(f.size)}` : 'Pilih satu image .bin. Berkas tidak dikirim keluar dari browser.';
   });
   $('clearLog').addEventListener('click', () => { logBox.textContent = ''; });
+  $('clearConsole').addEventListener('click', () => { consoleBox.textContent = ''; });
+  $('startConsole').addEventListener('click', () => {
+    if (!selectedPort) { setConsoleStatus('Pilih port dengan proses flash terlebih dahulu.'); return; }
+    launchMonitor(selectedPort);
+  });
+  $('stopConsole').addEventListener('click', stopMonitor);
   function formatBytes(bytes) { return bytes < 1048576 ? `${(bytes/1024).toFixed(1)} KB` : `${(bytes/1048576).toFixed(2)} MB`; }
   function parseAddress(value) {
     const s = value.trim();
@@ -79,6 +93,60 @@
     const n = Number(s.toLowerCase().startsWith('0x') ? parseInt(s,16) : Number(s));
     if (!Number.isSafeInteger(n) || n < 0 || n > 0x3fffffff || n % 0x1000 !== 0) throw new Error('Alamat harus valid dan sejajar sektor 0x1000.');
     return n;
+  }
+  function appendConsole(text) {
+    const clean = String(text).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '');
+    if (consoleBox.textContent === 'Output serial firmware akan muncul di sini.\n') consoleBox.textContent = '';
+    consoleBox.textContent += clean;
+    if (consoleBox.textContent.length > 250000) consoleBox.textContent = consoleBox.textContent.slice(-200000);
+    consoleBox.scrollTop = consoleBox.scrollHeight;
+  }
+  function launchMonitor(port) {
+    if (monitorTask) return;
+    monitorStopRequested = false;
+    $('startConsole').disabled = true;
+    $('stopConsole').disabled = false;
+    button.disabled = true;
+    monitorTask = readConsole(port).finally(() => {
+      monitorTask = null;
+      $('startConsole').disabled = !selectedPort || !supported;
+      $('stopConsole').disabled = true;
+      button.disabled = !supported;
+    });
+  }
+  async function readConsole(port) {
+    let reader = null, inputDone = null;
+    try {
+      if (port.readable || port.writable) throw new Error('Port masih dipakai. Hentikan aplikasi serial lain lalu coba lagi.');
+      await port.open({ baudRate: Number($('baud').value), dataBits: 8, stopBits: 1, parity: 'none', flowControl: 'none' });
+      setConsoleStatus(`Memantau serial @ ${$('baud').value} baud.`);
+      log(`Konsol serial mulai membaca pada ${$('baud').value} baud.`);
+      const decoder = new TextDecoderStream();
+      inputDone = port.readable.pipeTo(decoder.writable).catch(() => {});
+      reader = decoder.readable.getReader();
+      monitorReader = reader;
+      while (!monitorStopRequested) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        if (value) appendConsole(value);
+      }
+    } catch (error) {
+      if (!monitorStopRequested) {
+        setConsoleStatus(`Konsol terputus: ${error?.message || error}`);
+        log(`Konsol serial: ${error?.message || error}`);
+      }
+    } finally {
+      if (reader) { try { reader.releaseLock(); } catch {} }
+      monitorReader = null;
+      if (inputDone) await inputDone;
+      try { if (port.readable || port.writable) await port.close(); } catch (error) { log(`Tidak dapat menutup port konsol: ${error?.message || error}`); }
+      if (monitorStopRequested) setConsoleStatus('Pemantauan dihentikan.');
+    }
+  }
+  async function stopMonitor() {
+    monitorStopRequested = true;
+    try { if (monitorReader) await monitorReader.cancel(); } catch {}
+    if (monitorTask) await monitorTask;
   }
   button.addEventListener('click', async () => {
     const file = $('firmware').files[0];
@@ -89,6 +157,7 @@
     catch (e) { setStatus(e.message, 'error'); $('address').focus(); return; }
     button.disabled = true;
     $('progressWrap').classList.add('show'); $('progress').value = 0; $('progressPct').textContent = '0%';
+    let flashSucceeded = false;
     try {
       log(`Berkas: ${file.name} (${formatBytes(file.size)})`);
       log(`Alamat: 0x${address.toString(16).toUpperCase()} | Baud: ${$('baud').value}`);
@@ -96,6 +165,8 @@
       const { ESPLoader, Transport } = await import('https://esm.sh/esptool-js@0.7.1?bundle');
       log('Meminta izin port serial…');
       const port = await navigator.serial.requestPort();
+      selectedPort = port;
+      $('startConsole').disabled = false;
       transport = new Transport(port, true);
       const terminal = { clean(){}, writeLine(data){ log(data); }, write(data){ log(data); } };
       loader = new ESPLoader({ transport, baudrate: Number($('baud').value), terminal, debugLogging: false });
@@ -118,6 +189,7 @@
           $('progressText').textContent = `Menulis ${formatBytes(written)} dari ${formatBytes(total)}`;
         }
       });
+      flashSucceeded = true;
       log('Flash berhasil. Melakukan reset…');
       setStatus('Flash berhasil.', 'ok'); $('progress').value = 100; $('progressPct').textContent = '100%'; $('progressText').textContent = 'Selesai';
       try { await loader.after('hard_reset'); log('Board telah di-reset.'); } catch (e) { log(`Reset otomatis tidak berhasil: ${e.message || e}`); }
@@ -127,7 +199,13 @@
       setStatus(msg.includes('cancel') || msg.includes('No port selected') ? 'Pemilihan port dibatalkan.' : `Gagal: ${msg}`, 'error');
     } finally {
       try { if (transport) await transport.disconnect(); } catch (e) { log(`Catatan saat menutup port: ${e.message || e}`); }
-      transport = null; loader = null; button.disabled = !supported;
+      transport = null; loader = null;
+      button.disabled = !supported;
+      if (selectedPort) $('startConsole').disabled = false;
+      if (flashSucceeded && selectedPort) {
+        log('Membuka kembali port untuk membaca log firmware…');
+        launchMonitor(selectedPort);
+      }
     }
   });
 </script>
